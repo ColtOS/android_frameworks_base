@@ -3689,6 +3689,14 @@ public final class Settings {
         /**
          * Boolean value on whether to show weather in the statusbar
          * Change volume up and down handlign based on rotation
+         * Volume keys control cursor in text fields (default is 0)
+         * 0 - Disabled
+         * 1 - Volume up/down moves cursor left/right
+         * 2 - Volume up/down moves cursor right/left
+         * @hide
+         */
+        /**
+         * Whether or not volume button music controls should be enabled to seek media tracks
          * @hide
          */
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
