@@ -30,6 +30,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.MathUtils;
 import android.view.GestureDetector;
@@ -101,7 +102,7 @@ public class NotificationPanelView extends PanelView implements
     private static final String LOCK_SCREEN_WEATHER_ENABLED =
             "cmsecure:" + CMSettings.Secure.LOCK_SCREEN_WEATHER_ENABLED;
     private static final String DOUBLE_TAP_SLEEP_ANYWHERE =
-            "cmsecure:" + CMSettings.Secure.DOUBLE_TAP_SLEEP_ANYWHERE;
+            "system:" + Settings.System.DOUBLE_TAP_SLEEP_ANYWHERE;
 
     private static final Rect mDummyDirtyRect = new Rect(0, 0, 1, 1);
 
