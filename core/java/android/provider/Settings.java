@@ -3688,6 +3688,12 @@ public final class Settings {
 
         /**
          * Boolean value on whether to show weather in the statusbar
+         * Change volume up and down handlign based on rotation
+         * @hide
+         */
+        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+
+        /**
          * @hide
          */
         public static final String STATUS_BAR_SHOW_WEATHER = "status_bar_show_weather";
