@@ -4099,6 +4099,12 @@ public final class Settings {
 	public static final String REMOVE_SETTINGS_TILE_SUMMARY = "remove_settings_tile_summary";
 
         /**
+         * Three Finger Gesture
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

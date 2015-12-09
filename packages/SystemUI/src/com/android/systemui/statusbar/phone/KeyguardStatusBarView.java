@@ -89,12 +89,6 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     private int mShowCarrierLabel;
 
-    private ContentObserver mObserver = new ContentObserver(new Handler()) {
-        public void onChange(boolean selfChange, Uri uri) {
-            showStatusBarCarrier();
-            updateVisibilities();
-        }
-    };
     private boolean mHideContents;
 
     public KeyguardStatusBarView(Context context, AttributeSet attrs) {
