@@ -39,7 +39,7 @@ import android.widget.ListView;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
-import com.android.internal.util.crdroid.PackageUtils;
+import com.android.internal.util.colt.PackageUtils;
 import com.android.systemui.R;
 import com.android.systemui.colt.omnijaws.DetailedWeatherView;
 import com.android.systemui.colt.omnijaws.OmniJawsClient;
@@ -144,7 +144,7 @@ public class WeatherTile extends QSTile<QSTile.BooleanState> implements OmniJaws
 
     @Override
     public Intent getLongClickIntent() {
-        if (PackageUtils.isPackageInstalled("com.google.android.googlequicksearchbox", getActivity())) {
+	if (PackageUtils.isAppInstalled(mContext, "com.google.android.googlequicksearchbox")) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("dynact://velour/weather/ProxyActivity"));
             intent.setComponent(new ComponentName("com.google.android.googlequicksearchbox",
