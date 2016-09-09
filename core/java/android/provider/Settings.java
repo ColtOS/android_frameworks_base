@@ -3858,6 +3858,17 @@ public final class Settings {
 
         /**
          * Whether to show or hide the edit icon
+         * Immersive recents options
+         *
+         * 0 = Default AOSP look
+         * 1 = Statusbar only
+         * 2 = Navbar only
+         * 3 = Fullscreen
+         */
+        public static final String IMMERSIVE_RECENTS = "immersive_recents";
+
+        /**
+         * Whether the phone ringtone should be played in an increasing manner
          * @hide
          */
         public static final String QS_EDIT_TOGGLE = "qs_edit_toggle";
