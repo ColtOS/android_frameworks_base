@@ -3809,6 +3809,12 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
 
         /**
+         * Disable dashboard suggestions in settings
+         * @hide
+         */
+        public static final String DISABLE_SUGGESTIONS = "disable_suggestions";
+
+        /**
          * Settings for carrier label font size
          * @hide
          */
