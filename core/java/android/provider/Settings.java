@@ -3812,7 +3812,7 @@ public final class Settings {
          * Disable dashboard suggestions in settings
          * @hide
          */
-        public static final String DISABLE_SUGGESTIONS = "disable_suggestions";
+	public static final String DISABLE_SETTINGS_SUGGESTIONS = "disable_settings_suggestions";
 
         /**
          * Settings for carrier label font size
@@ -4091,6 +4091,12 @@ public final class Settings {
          * @hide
          */
         public static final String REMOVE_SETTINGS_SUMMARY = "remove_settings_summary";
+
+        /**
+         * Remove tile summaries in settings
+         * @hide
+         */
+	public static final String REMOVE_SETTINGS_TILE_SUMMARY = "remove_settings_tile_summary";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
