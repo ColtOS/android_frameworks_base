@@ -3889,8 +3889,16 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
         /**
-	Full Screen Alarm
-	*/
+         * Disable dashboard conditions in settings
+         * @hide
+         */
+        public static final String DISABLE_DASHBOARD_CONDITIONS = "disable_dashboard_conditions";
+
+
+	/**
+         * Show full screen alarm
+         * @hide
+         */
 
         public static final String SHOW_ALARM_FULLSCREEN = "show_alarm_fullscreen";
 
