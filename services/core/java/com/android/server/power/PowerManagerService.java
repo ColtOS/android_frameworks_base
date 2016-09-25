@@ -1891,7 +1891,7 @@ public final class PowerManagerService extends SystemService
                                 mButtonsLight.setBrightness(0);
                                 mButtonOn = false;
                             } else {
-                                if ((!mButtonBacklightOnTouchOnly || mButtonPressed) &&
+                                if ((!mButtonLightOnKeypressOnly || mButtonPressed) &&
                                         !mProximityPositive && !isDeviceInPocket) {
                                     mButtonsLight.setBrightness(buttonBrightness);
                                     mButtonPressed = false;

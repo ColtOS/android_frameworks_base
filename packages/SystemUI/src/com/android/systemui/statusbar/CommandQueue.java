@@ -115,6 +115,7 @@ public class CommandQueue extends IStatusBar.Stub {
         void dismissKeyboardShortcutsMenu();
         void toggleKeyboardShortcutsMenu(int deviceId);
         void cancelPreloadRecentApps();
+        void toggleOrientationListener(boolean enable);
         void setWindowState(int window, int state);
         void buzzBeepBlinked();
         void notificationLightOff();
@@ -293,6 +294,10 @@ public class CommandQueue extends IStatusBar.Stub {
             mHandler.removeMessages(MSG_SHOW_TV_PICTURE_IN_PICTURE_MENU);
             mHandler.obtainMessage(MSG_SHOW_TV_PICTURE_IN_PICTURE_MENU).sendToTarget();
         }
+    }
+
+    public void toggleOrientationListener(boolean enable) {
+        mCallbacks.toggleOrientationListener(enable);
     }
 
     public void setWindowState(int window, int state) {
