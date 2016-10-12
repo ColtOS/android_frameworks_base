@@ -323,6 +323,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             "cmsystem:" + CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE;
     private static final String LOCKSCREEN_MEDIA_METADATA =
             "cmsecure:" + CMSettings.Secure.LOCKSCREEN_MEDIA_METADATA;
+    private static final String QS_ROWS_PORTRAIT =
+            Settings.Secure.QS_ROWS_PORTRAIT;
+    private static final String QS_ROWS_LANDSCAPE =
+            Settings.Secure.QS_ROWS_LANDSCAPE;
+    private static final String QS_COLUMNS =
+            Settings.Secure.QS_COLUMNS;
 
     static {
         boolean onlyCoreApps;
@@ -818,7 +824,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 SCREEN_BRIGHTNESS_MODE,
                 NAVBAR_LEFT_IN_LANDSCAPE,
                 STATUS_BAR_BRIGHTNESS_CONTROL,
-                LOCKSCREEN_MEDIA_METADATA);
+                LOCKSCREEN_MEDIA_METADATA,
+                QS_ROWS_PORTRAIT,
+                QS_ROWS_LANDSCAPE,
+                QS_COLUMNS);
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController, mCastController,
@@ -5570,6 +5579,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 break;
             case LOCKSCREEN_MEDIA_METADATA:
                 mShowMediaMetadata = newValue == null || Integer.parseInt(newValue) == 1;
+                break;
+            case QS_ROWS_PORTRAIT:
+            case QS_ROWS_LANDSCAPE:
+            case QS_COLUMNS:
+                updateResources();
                 break;
             default:
                 break;
