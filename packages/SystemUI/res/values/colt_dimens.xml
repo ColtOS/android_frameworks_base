@@ -20,5 +20,9 @@
     <dimen name="net_traffic_single_text_size">12dp</dimen>
 
     <!-- Network traffic monitor multi-line text size -->
-    <dimen name="net_traffic_multi_text_size">8dp</dimen>
+    <dimen name="net_traffic_multi_text_size">8dp</dimen> 
+   
+    <!-- Custom Carrier Label -->
+    <dimen name="status_bar_carrier_height">14sp</dimen>
+
 </resources>

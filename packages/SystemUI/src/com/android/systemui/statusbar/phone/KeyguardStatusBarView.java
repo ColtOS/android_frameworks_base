@@ -27,6 +27,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.provider.Settings;
 
 import com.android.systemui.BatteryMeterDrawable;
 import com.android.systemui.BatteryMeterView;
@@ -53,6 +54,8 @@ public class KeyguardStatusBarView extends RelativeLayout
             "cmsystem:" + CMSettings.System.STATUS_BAR_SHOW_BATTERY_PERCENT;
     private static final String STATUS_BAR_BATTERY_STYLE =
             "cmsystem:" + CMSettings.System.STATUS_BAR_BATTERY_STYLE;
+    private static final String STATUS_BAR_SHOW_CARRIER =
+            "system:" + Settings.System.STATUS_BAR_SHOW_CARRIER;
 
     private boolean mBatteryCharging;
     private boolean mKeyguardUserSwitcherShowing;
@@ -74,6 +77,8 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     private boolean mShowBatteryText;
     private Boolean mForceBatteryText;
+
+    private int mShowCarrierLabel;
 
     public KeyguardStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -185,6 +190,13 @@ public class KeyguardStatusBarView extends RelativeLayout
             mBatteryLevel.setVisibility(
                     mBatteryCharging || mShowBatteryText ? View.VISIBLE : View.GONE);
         }
+        if (mCarrierLabel != null) {
+            if (mShowCarrierLabel == 1 || mShowCarrierLabel == 3) {
+                mCarrierLabel.setVisibility(View.VISIBLE);
+            } else {
+                mCarrierLabel.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void updateSystemIconsLayoutParams() {
@@ -210,7 +222,9 @@ public class KeyguardStatusBarView extends RelativeLayout
         mBatteryListening = listening;
         if (mBatteryListening) {
             TunerService.get(getContext()).addTunable(this,
-                    STATUS_BAR_SHOW_BATTERY_PERCENT, STATUS_BAR_BATTERY_STYLE);
+                    STATUS_BAR_SHOW_BATTERY_PERCENT,
+                    STATUS_BAR_BATTERY_STYLE,
+                    STATUS_BAR_SHOW_CARRIER);
             mBatteryController.addStateChangedCallback(this);
         } else {
             mBatteryController.removeStateChangedCallback(this);
@@ -362,7 +376,13 @@ public class KeyguardStatusBarView extends RelativeLayout
                     }
                 }
                 break;
+            case STATUS_BAR_SHOW_CARRIER:
+                mShowCarrierLabel =
+                        newValue == null ? 1 : Integer.parseInt(newValue);
+                updateVisibilities();
+                break;
         }
-        updateVisibilities();
+
+             updateVisibilities();
     }
 }
