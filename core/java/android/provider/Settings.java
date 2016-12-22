@@ -3733,6 +3733,23 @@ public final class Settings {
 
         /**
          * Whether to disable showing arrows in network traffic indicators
+
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR = "battery_bar_enable_charging_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BLEND_COLORS = "battery_bar_blend_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE = "battery_bar_blend_color_reverse";
+
+        /**
+         * Enable statusbar double tap gesture on to put device to sleep
          * @hide
          */
         public static final String NETWORK_TRAFFIC_HIDEARROW = "network_traffic_hidearrow";
@@ -5300,6 +5317,20 @@ public final class Settings {
         public static final String WIFI_DISCONNECT_DELAY_DURATION =
                 "wifi_disconnect_delay_duration";
 
+	/**
+         * Add or remove software navigation bar
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_VISIBLE = "navigation_bar_visible";
+
+        /**
+         * Navigation bar mode
+         *
+         * @hide
+         */
+         public static final String NAVIGATION_BAR_MODE = "navigation_bar_mode";
+
+	
         /**
          * A flag containing settings used for biometric weak
          * @hide
