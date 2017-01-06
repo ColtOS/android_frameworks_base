@@ -264,23 +264,6 @@ public class InputMethodService extends AbstractInputMethodService {
      */
     public static final int IME_VISIBLE = 0x2;
 
-    int mVolumeKeyCursorControl = 0;
-
-    /**
-     * @hide
-     */
-    public static final int VOLUME_CURSOR_OFF = 0;
-
-    /**
-     * @hide
-     */
-    public static final int VOLUME_CURSOR_ON = 1;
-
-    /**
-     * @hide
-     */
-    public static final int VOLUME_CURSOR_ON_REVERSE = 2;
-
     InputMethodManager mImm;
     
     int mTheme = 0;
