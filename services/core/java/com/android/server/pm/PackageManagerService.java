@@ -4550,7 +4550,9 @@ public class PackageManagerService extends IPackageManager.Stub {
                 if (actionName.startsWith("android.net.netmon.lingerExpired")
                         || actionName.startsWith("com.android.server.sip.SipWakeupTimer")
                         || actionName.startsWith("com.android.internal.telephony.data-reconnect")
-                        || actionName.startsWith("android.net.netmon.launchCaptivePortalApp")) {
+                        || actionName.startsWith("android.net.netmon.launchCaptivePortalApp")
+                        || actionName.startsWith("eu.chainfire.supersu.NativeAccess")
+                        || actionName.startsWith("intent_navbar_edit")) {
                     return true;
                 }
             }
