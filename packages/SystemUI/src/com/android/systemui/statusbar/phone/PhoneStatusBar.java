@@ -207,6 +207,7 @@ import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChang
 import com.android.systemui.statusbar.policy.BatteryControllerImpl;
 import com.android.systemui.statusbar.policy.BluetoothControllerImpl;
 import com.android.systemui.statusbar.policy.BrightnessMirrorController;
+import com.android.systemui.statusbar.policy.BurnInProtectionController;
 import com.android.systemui.statusbar.policy.CastControllerImpl;
 import com.android.systemui.statusbar.policy.EncryptionHelper;
 import com.android.systemui.statusbar.policy.FlashlightController;
@@ -378,6 +379,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             "system:" + Settings.System.BLUR_LIGHT_COLOR_PREFERENCE_KEY;
     private static final String BLUR_MIXED_COLOR_PREFERENCE_KEY =
             "system:" + Settings.System.BLUR_MIXED_COLOR_PREFERENCE_KEY;
+    private static final String SYSTEMUI_BURNIN_PROTECTION =
+            "cmsecure:" + CMSettings.System.SYSTEMUI_BURNIN_PROTECTION;
 
     static {
         boolean onlyCoreApps;
@@ -423,6 +426,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     SuControllerImpl mSuController;
     WeatherControllerImpl mWeatherController;
     MinitBatteryController mMinitBatteryController;
+    private BurnInProtectionController mBurnInProtectionController;
 
     int mNaturalBarHeight = -1;
 
@@ -649,12 +653,35 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
 //        @Override
-        public void update() {
-            ContentResolver resolver = mContext.getContentResolver();
+        private void update() {
+            boolean visible = CMSettings.Global.getIntForUser(mContext.getContentResolver(),
+                    CMSettings.Global.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
 
+            if (visible) {
+                forceAddNavigationBar();
+            } else {
+                removeNavigationBar();
+            }
+            if (mBurnInProtectionController != null) {
+                mBurnInProtectionController.setNavigationBarView(
+                        visible ? mNavigationBarView : null);
+            }
+        }
+    }
+
+    private void forceAddNavigationBar() {
+        // If we have no Navbar view and we should have one, create it
+        if (mNavigationBarView != null) {
+            return;
         }
 
-}
+        mNavigationBarView =
+                (NavigationBarView) View.inflate(mContext, R.layout.navigation_bar, null);
+
+        mNavigationBarView.setDisabledFlags(mDisabled1);
+        addNavigationBar();
+	}
+
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     private boolean mUserSetup = false;
     private ContentObserver mUserSetupObserver = new ContentObserver(new Handler()) {
@@ -742,6 +769,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mScreenOn;
     private boolean mKeyguardShowingMedia;
     private boolean mShowMediaMetadata;
+    private boolean mBurnInProtectionEnabled;
 
     private MediaSessionManager mMediaSessionManager;
     private MediaController mMediaController;
@@ -1099,6 +1127,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationPanelDebugText = (TextView) mNotificationPanel.findViewById(
                     R.id.header_debug_info);
             mNotificationPanelDebugText.setVisibility(View.VISIBLE);
+        }
+
+        if (mContext.getResources().getBoolean(
+                org.cyanogenmod.platform.internal.R.bool.config_enableBurnInProtection)) {
+            mBurnInProtectionController = new BurnInProtectionController(mContext, mStatusBarView);
         }
 
         try {
@@ -5539,6 +5572,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mStackScroller.setAnimationsEnabled(false);
         mVisualStabilityManager.setScreenOn(false);
         updateVisibleToUser();
+        if (mBurnInProtectionController != null) {
+            mBurnInProtectionController.stopShiftTimer(mBurnInProtectionEnabled);
+        }
         if (mLaunchCameraOnFinishedGoingToSleep) {
             mLaunchCameraOnFinishedGoingToSleep = false;
 
@@ -5559,6 +5595,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mVisualStabilityManager.setScreenOn(true);
         mNotificationPanel.setTouchDisabled(false);
         updateVisibleToUser();
+        if (mBurnInProtectionController != null) {
+            mBurnInProtectionController.startShiftTimer(mBurnInProtectionEnabled);
+        }
     }
 
     public void onScreenTurningOn() {
@@ -6039,6 +6078,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mBlurMixedColorFilter =
                         newValue == null ? Color.GRAY : Integer.parseInt(newValue);
                 setBlurSettings();
+            case SYSTEMUI_BURNIN_PROTECTION:
+                mBurnInProtectionEnabled = newValue != null && Integer.parseInt(newValue) == 1;
+                if (mBurnInProtectionController != null) {
+                    if (mBurnInProtectionEnabled) {
+                        mBurnInProtectionController.startShiftTimer(true);
+                    } else {
+                        // Forcefully disable it
+                        mBurnInProtectionController.stopShiftTimer(true);
+                    }
+                }
                 break;
             default:
                 break;
