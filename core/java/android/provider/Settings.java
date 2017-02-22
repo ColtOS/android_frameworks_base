@@ -5539,6 +5539,12 @@ public final class Settings {
 	public static final String PULSE_LAVALAMP_SOLID_SPEED = "lava_lamp_solid_speed";
 
         /**
+         * Pulse Solid units opacity
+         * @hide
+         */
+        public static final String PULSE_SOLID_UNITS_OPACITY = "pulse_solid_units_opacity";
+
+        /**
          * A flag containing settings used for biometric weak
          * @hide
          */
