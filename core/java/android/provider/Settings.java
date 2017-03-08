@@ -7843,7 +7843,7 @@ public final class Settings {
             DOZE_PULSE_ON_DOUBLE_TAP,
             NFC_PAYMENT_DEFAULT_COMPONENT,
             ADVANCED_REBOOT,
-            CAMERA_GESTURE_DISABLED
+            CAMERA_GESTURE_DISABLED,
             LOCKSCREEN_QUICK_UNLOCK_CONTROL
         };
 

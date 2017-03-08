@@ -643,7 +643,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.HEADER_WEATHER_IMAGE_ENABLED))
                     || uri.equals(Settings.System.getUriFor(
                     Settings.System.OMNIJAWS_WEATHER_ICON_PACK))) {
-                    mHeader.updateVisibilities();
                     mHeader.queryAndUpdateWeather();
             }
            update();

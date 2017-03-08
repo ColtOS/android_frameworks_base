@@ -69,11 +69,11 @@ import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserInfoController.OnUserInfoChangedListener;
 import com.android.systemui.statusbar.policy.WeatherController;
 import com.android.systemui.tuner.TunerService;
-import com.android.systemui.omni.OmniJawsClient;
+import com.android.systemui.colt.omnijaws.OmniJawsClient;
+import com.android.systemui.colt.omnijaws.DetailedWeatherView;
 
 public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         NextAlarmChangeCallback, OnClickListener, OmniJawsClient.OmniJawsObserver, OnUserInfoChangedListener, EmergencyListener,
-
         SignalCallback, StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
 
     private static final String TAG = "QuickStatusBarHeader";
@@ -87,7 +87,10 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     private TextView mAlarmStatus;
     private View mAlarmStatusCollapsed;
-
+    
+    private String mWeatherLabel;
+    private DetailedWeatherView mDetailedView;
+    
     private QSPanel mQsPanel;
 
     private boolean mExpanded;
@@ -154,6 +157,15 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     public QuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    public void weatherError() {
+        mWeatherLabel = mContext.getResources().getString(R.string.omnijaws_service_error);
+        //refreshState();
+        if (mDetailedView != null) {
+            mDetailedView.weatherError();
+        }
     }
 
     @Override
@@ -426,20 +438,6 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         super.onAttachedToWindow();
         mWeatherClient.addObserver(this);
         queryAndUpdateWeather();
-    }
-
-   @Override
-   public void killvisibilities() {
-        if (mMultiUserSwitch != null) {
-        mMultiUserSwitch.setVisibility(View.GONE);
-        }
-        if (mEdit != null) {
-        mEdit.setVisibility(View.GONE);
-        }
-        if (mExpandIndicator != null) {
-        mExpandIndicator.setVisibility(View.GONE);
-        }
->>>>>>> 0c31a30... base:Optional weather info in expanded header [1/2]
     }
 
     private void updateDateTimePosition() {
