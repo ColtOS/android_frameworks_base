@@ -70,9 +70,11 @@ import com.android.systemui.statusbar.policy.UserInfoController.OnUserInfoChange
 import com.android.systemui.statusbar.policy.WeatherController;
 import com.android.systemui.tuner.TunerService;
 
+import com.android.systemui.colt.omnijaws.OmniJawsClient;
+import com.android.systemui.colt.omnijaws.DetailedWeatherView;
+
 public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         NextAlarmChangeCallback, OnClickListener, OnUserInfoChangedListener, EmergencyListener,
-
         SignalCallback, StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
 
     private static final String TAG = "QuickStatusBarHeader";
@@ -86,7 +88,10 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     private TextView mAlarmStatus;
     private View mAlarmStatusCollapsed;
-
+    
+    private String mWeatherLabel;
+    private DetailedWeatherView mDetailedView;
+    
     private QSPanel mQsPanel;
 
     private boolean mExpanded;
@@ -144,6 +149,15 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     public QuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    public void weatherError() {
+        mWeatherLabel = mContext.getResources().getString(R.string.omnijaws_service_error);
+        //refreshState();
+        if (mDetailedView != null) {
+            mDetailedView.weatherError();
+        }
     }
 
     @Override
