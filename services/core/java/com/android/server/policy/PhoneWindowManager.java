@@ -8466,7 +8466,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // CMHardwareService to be up and running
         mSettingsObserver.observe();
 
-        mANBIHandler = new ANBIHandler(mContext);
+        if (mDeviceHardwareKeys > 0) {
+            mANBIHandler = new ANBIHandler(mContext);
+         }
 
         mEdgeGestureManager = EdgeGestureManager.getInstance();
         mEdgeGestureManager.setEdgeGestureActivationListener(mEdgeGestureActivationListener);

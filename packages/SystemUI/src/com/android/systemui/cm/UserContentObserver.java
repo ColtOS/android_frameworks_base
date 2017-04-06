@@ -50,6 +50,12 @@ public abstract class UserContentObserver extends ContentObserver {
     public UserContentObserver(Handler handler) {
         super(handler);
         mHandler = handler;
+        mUpdateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                update();
+            }
+        };
     }
 
     protected void observe() {
@@ -69,4 +75,15 @@ public abstract class UserContentObserver extends ContentObserver {
         }
     }
 
+    protected abstract void update();
+
+    @Override
+    public void onChange(boolean selfChange) {
+        update();
+    }
+
+    @Override
+    public void onChange(boolean selfChange, Uri uri) {
+        update();
+    }
 }
