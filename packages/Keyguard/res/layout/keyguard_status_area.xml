@@ -2,6 +2,7 @@
 <!--
 **
 ** Copyright 2013, The Android Open Source Project
+** Copyright 2017, The ColtOS Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License")
 ** you may not use this file except in compliance with the License.
@@ -19,32 +20,64 @@
 
 <!-- This is a view that shows general status information in Keyguard. -->
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:androidprv="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:gravity="center" 
+    android:orientation="vertical" 
+    android:layout_width="match_parent" 
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
-    <TextClock android:id="@+id/date_view"
-        android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp">
+
+        <TextClock
+            android:textColor="@color/clock_white"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:id="@id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="a - EEE, LLL d"
+            android:format24Hour="EEE, LLL d"
+            style="@style/somc_style"
+            android:layout_marginTop="134dp"
+            android:layout_marginLeft="72dp"
+            />
+        <TextView
+            android:textSize="@dimen/widget_label_font_size"
+            android:textColor="#ccffffff"
+            android:ellipsize="marquee"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/owner_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="148dp"
+            android:singleLine="true" />
+
+    </RelativeLayout>
+
+    <TextClock
         android:textColor="@color/clock_white"
-        style="@style/widget_label"
-        android:textAllCaps="true"
-        android:letterSpacing="0.15"
         android:gravity="center"
-        />
-    <TextView android:id="@+id/alarm_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="6dp"
-        android:drawableStart="@drawable/ic_access_alarms_big"
-        android:textColor="@color/clock_gray"
-        android:letterSpacing="0.15"
-        android:textAllCaps="true"
-        style="@style/widget_label"
-        android:layout_marginStart="6dp"
-        android:gravity="center"
-        android:visibility="gone"
-        />
+        android:id="@+id/date_view" 
+        android:layout_width="0.0dip" 
+        android:layout_height="0.0dip" 
+        android:layout_below="@id/clock" 
+        style="@style/widget_label" />
+    <TextView 
+        android:textColor="@color/clock_gray" 
+        android:gravity="center" 
+        android:id="@+id/alarm_status" 
+        android:visibility="gone" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:drawablePadding="6.0dip" 
+        android:layout_below="@id/clock" 
+        android:drawableStart="@drawable/ic_access_alarms_big" 
+        style="@style/somc_style" />
 </LinearLayout>
+
