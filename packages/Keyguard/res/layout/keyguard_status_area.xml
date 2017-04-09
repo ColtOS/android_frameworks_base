@@ -21,17 +21,17 @@
 <!-- This is a view that shows general status information in Keyguard. -->
 <LinearLayout
     android:gravity="center" 
-    android:orientation="vertical" 
-    android:layout_width="match_parent" 
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp">
+        android:layout_centerInParent="true">
 
         <TextClock
             android:textColor="@color/clock_white"
@@ -42,9 +42,8 @@
             android:layout_height="wrap_content"
             android:format12Hour="a - EEE, LLL d"
             android:format24Hour="EEE, LLL d"
+            android:layout_marginTop="175dp"
             style="@style/somc_style"
-            android:layout_marginTop="134dp"
-            android:layout_marginLeft="72dp"
             />
         <TextView
             android:textSize="@dimen/widget_label_font_size"
@@ -54,8 +53,7 @@
             android:id="@+id/owner_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="72dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="195dp"
             android:singleLine="true" />
 
     </RelativeLayout>
@@ -75,9 +73,8 @@
         android:visibility="gone" 
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content" 
-        android:drawablePadding="6.0dip" 
-        android:layout_below="@id/clock" 
+        android:drawablePadding="6.0dip"
+        android:layout_marginTop="5dp"
         android:drawableStart="@drawable/ic_access_alarms_big" 
         style="@style/somc_style" />
 </LinearLayout>
-

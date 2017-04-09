@@ -31,40 +31,44 @@
     xmlns:androidprv="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:gravity="center|center_vertical"
         android:orientation="vertical"
         android:id="@+id/keyguard_clock_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
         androidprv:layout_maxHeight="@dimen/keyguard_security_height"
         androidprv:layout_maxWidth="@dimen/keyguard_security_width"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:androidprv="http://schemas.android.com/apk/res-auto">
-
-        <TextClock
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
+    
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:format12Hour="mm"
-            android:format24Hour="mm"
-            android:singleLine="true"
-            android:textAppearance="@style/LightMinutesTextStyle"
-            android:textColor="@color/clock_white"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/clock" />
+            android:gravity="center">
 
-        <TextClock
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:format12Hour="hh"
-            android:format24Hour="HH"
-            android:textAppearance="@style/BoldHoursTextStyle"
-            android:textColor="@color/clock_white"
-            android:layout_alignParentTop="true" />
+            <TextClock
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:format12Hour="hh"
+                android:format24Hour="HH"
+                android:textAppearance="@style/BoldHoursTextStyle"
+                android:textColor="@color/clock_white" />
+
+            <TextClock
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:format12Hour="mm"
+                android:format24Hour="mm"
+                android:singleLine="true"
+                android:textAppearance="@style/LightMinutesTextStyle"
+                android:textColor="@color/clock_white"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/clock_view" />
+            
+        </LinearLayout>
 
         <TextClock
             android:textColor="@color/clock_white"
@@ -74,10 +78,13 @@
             android:layout_height="0.0dip"
             android:layout_marginBottom="0.0dip"
             android:singleLine="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:format12Hour="@string/keyguard_widget_12_hours_format"
             android:format24Hour="@string/keyguard_widget_24_hours_format"
             style="@style/widget_big_thin" />
-
-        <include layout="@layout/keyguard_status_area" />
-    </RelativeLayout>
+    
+    <include layout="@layout/keyguard_status_area" />
+</RelativeLayout>
 </com.android.keyguard.KeyguardStatusView>
