@@ -4371,10 +4371,15 @@ public final class Settings {
         public static final String LOCKSCREEN_CLOCK_COLOR = "lockscreen_clock_color";
 
         /**
-         * Change the color of the lockscreen date underneath the clock
-         *
+         * Whether to display cross sign for a data disabled connection
          * @hide
          */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
+        /**
+         * @hide
+        * Change the color of the lockscreen date underneath the clock 
+	*/
         public static final String LOCKSCREEN_CLOCK_DATE_COLOR = "lockscreen_clock_date_color";
 
         /**
