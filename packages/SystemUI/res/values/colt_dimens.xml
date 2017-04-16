@@ -79,4 +79,7 @@
     <dimen name="pie_status_text_top_margin">13dp</dimen>
     <dimen name="pie_status_text_top_margin_land">9dp</dimen>
 
+   <!-- Padding end for weather text -->
+    <dimen name="status_bar_weather_padding_end">16dp</dimen>
+
 </resources>
