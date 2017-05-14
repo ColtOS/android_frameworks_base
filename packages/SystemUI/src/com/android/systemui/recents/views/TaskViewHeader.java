@@ -648,7 +648,7 @@ public class TaskViewHeader extends FrameLayout
             mDismissButton.setAlpha(1f);
         }
         if (Settings.System.getInt(mContext.getContentResolver(),
-                       Settings.System.LOCK_TO_APP_ENABLED, 0) != 0) {
+                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0) {
             mPinButton.setVisibility(View.VISIBLE);
             mPinButton.setClickable(true);
             if (mPinButton.getVisibility() == VISIBLE) {
@@ -660,6 +660,9 @@ public class TaskViewHeader extends FrameLayout
             } else {
                 mPinButton.setAlpha(1f);
             }
+        } else  {
+            mPinButton.setVisibility(View.GONE);
+            mPinButton.setClickable(false);
         }
         if (mMoveTaskButton != null) {
             if (mMoveTaskButton.getVisibility() == VISIBLE) {
@@ -694,10 +697,16 @@ public class TaskViewHeader extends FrameLayout
             mLockTaskButton.setClickable(true);
         }
         //Pin button
-        mPinButton.setVisibility(View.VISIBLE);
-        mPinButton.animate().cancel();
-        mPinButton.setAlpha(1f);
-        mPinButton.setClickable(true);
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0) {
+            mPinButton.setVisibility(View.VISIBLE);
+            mPinButton.animate().cancel();
+            mPinButton.setAlpha(1f);
+            mPinButton.setClickable(true);
+        } else  {
+            mPinButton.setVisibility(View.GONE);
+            mPinButton.setClickable(false);
+        }
         if (mMoveTaskButton != null) {
             mMoveTaskButton.setVisibility(View.VISIBLE);
             mMoveTaskButton.animate().cancel();
