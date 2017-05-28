@@ -5309,20 +5309,6 @@ public final class Settings {
         public static final String WIFI_DISCONNECT_DELAY_DURATION =
                 "wifi_disconnect_delay_duration";
 
-	/**
-         * Add or remove software navigation bar
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_VISIBLE = "navigation_bar_visible";
-
-        /**
-         * Navigation bar mode
-         *
-         * @hide
-         */
-         public static final String NAVIGATION_BAR_MODE = "navigation_bar_mode";
-
-	
         /**
          * @hide
          */
