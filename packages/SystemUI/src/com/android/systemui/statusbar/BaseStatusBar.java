@@ -1367,14 +1367,19 @@ public abstract class BaseStatusBar extends SystemUI implements
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getAction() & MotionEvent.ACTION_MASK;
             if (action == MotionEvent.ACTION_DOWN) {
-                preloadRecents();
+                if (isOmniSwitchEnabled()) {
+                    OmniSwitchConstants.preloadOmniSwitchRecents(mContext, UserHandle.CURRENT);
+                } else {
+                    preloadRecents();
+                }
             } else if (action == MotionEvent.ACTION_CANCEL) {
-                cancelPreloadingRecents();
-            } else if (action == MotionEvent.ACTION_UP) {
-                if (!v.isPressed()) {
+                if (!isOmniSwitchEnabled()) {
                     cancelPreloadingRecents();
                 }
-
+            } else if (action == MotionEvent.ACTION_UP) {
+                if (!v.isPressed() && !isOmniSwitchEnabled()) {
+                    cancelPreloadingRecents();
+                }
             }
             return false;
         }
@@ -1422,20 +1427,20 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected void toggleRecents() {
         if (isOmniSwitchEnabled()) {
-            Intent showIntent = new Intent(OmniSwitchConstants.ACTION_TOGGLE_OVERLAY);
-            mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
+            if (!mScreenPinningEnabled) {
+                Intent showIntent = new Intent(OmniSwitchConstants.ACTION_TOGGLE_OVERLAY2);
+                mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
+            }
         } else if (mRecents != null) {
             mRecents.toggleRecents(mDisplay);
         }
     }
 
     protected void preloadRecents() {
-        if (!isOmniSwitchEnabled()) {
-            if (mRecents != null) {
-                mRecents.showNextAffiliatedTask();
-            }
-        } else if (mRecents != null) {
+        if (isOmniSwitchEnabled() && mRecents != null) {
             mRecents.preloadRecents();
+        } else if (mRecents != null) {
+            mRecents.showNextAffiliatedTask();
         }
     }
 
