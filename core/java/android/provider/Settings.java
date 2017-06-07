@@ -3900,6 +3900,17 @@ public final class Settings {
          */
         public static final String DISABLE_DASHBOARD_CONDITIONS = "disable_dashboard_conditions";
 
+        /**
+         * Dashboard portrait columns in settings
+         * @hide
+         */
+        public static final String DASHBOARD_PORTRAIT_COLUMNS = "dashboard_portrait_columns";
+
+        /**
+         * Dashboard landscape columns in settings
+         * @hide
+         */
+        public static final String DASHBOARD_LANDSCAPE_COLUMNS = "dashboard_landscape_columns";
 
 	/**
          * Show full screen alarm
