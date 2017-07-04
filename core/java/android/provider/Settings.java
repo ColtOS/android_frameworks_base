@@ -7437,6 +7437,13 @@ public final class Settings {
                 "camera_double_tap_power_gesture_disabled";
 
         /**
+         * Whether to pulse the battery icon when charging
+         *
+         * @hide
+         */
+       public static final String STATUS_BAR_PULSE_CHARGING_BATTERY = "status_bar_pulse_charging_battery";
+
+	/**
          * Whether the camera double twist gesture to flip between front and back mode should be
          * enabled.
          *
