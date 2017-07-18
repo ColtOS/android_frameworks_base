@@ -32,6 +32,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.net.Uri;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentFilter;
