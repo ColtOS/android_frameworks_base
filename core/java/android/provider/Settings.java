@@ -4153,6 +4153,12 @@ public final class Settings {
 
         public static final String BLUR_SCALE_PREFERENCE_KEY = "blurred_expanded_panel_scale_pref";
 
+        /**
+         * Whether to display 4G icon instead LTE
+         * @hide
+         */
+        public static final String SHOW_FOURG_ICON = "show_fourg_icon";
+
         public static final String BLUR_RADIUS_PREFERENCE_KEY = "blurred_expanded_panel_radius_pref";
 
         public static final String TRANSLUCENT_NOTIFICATIONS_PERCENTAGE_PREFERENCE_KEY = "translucent_notifications_percentage_pref";
