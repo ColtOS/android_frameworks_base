@@ -44,14 +44,12 @@ import java.util.ArrayList;
  * // define a final callback
  * private final IThemeCallback mCallback = new IThemeCallback.Stub() {
  *
- *      @Overrde
  *      public void onCallbackAdded(int themeMode, int color) {
  *          // Usually this method calls {@link IThemeCallback#onThemeChanged(int, int)}
  *          // Unless special handling is needed for when the callback is registered the first time.
  *          onThemeChanged(themeMode, color);
  *      }
  *
- *      @Override
  *      public void onThemeChanged(int themeMode, int color) {
  *          // @param themeMode primary theme setting value.
  *          // Can be 0 (default theme), 1 (dark theme) or 2 (pixel theme).
@@ -62,7 +60,6 @@ import java.util.ArrayList;
  *          // You will have to make sure that all the methods called from here run inside the UI thread.
  *          mThemeResId = color;
  *          mHandler.post(new Runnable() { // Post to the UI thread
- *              @Override
  *              public void run() {
  *                  recreateActivity();
  *              }
@@ -76,7 +73,6 @@ import java.util.ArrayList;
  *
  * // Add callback to theme manager
  * // IMPORTANT! Make sure callback is registered and theme is applied BEFORE super.onCreate(Bundle); is called!
- * @Override
  * protected void onCreate(Bundle savedState) {
  *     ThemeManager manager = (ThemeManager) context.getSystemService(Context.THEME_SERVICE);
  *     manager.addCallback(mCallback);
