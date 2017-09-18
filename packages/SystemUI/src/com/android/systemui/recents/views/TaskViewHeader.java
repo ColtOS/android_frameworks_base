@@ -206,15 +206,8 @@ public class TaskViewHeader extends FrameLayout
             "system:" + Settings.System.RECENTS_LOCK_ICON;
     private static final String RECENTS_DISMISS_ICON =
             "system:" + Settings.System.RECENTS_DISMISS_ICON;
-    private static final String RECENTS_USE_OMNISWITCH =
-            "system:" + Settings.System.RECENTS_USE_OMNISWITCH;
-    private static final String USE_SLIM_RECENTS =
-            "system:" + Settings.System.USE_SLIM_RECENTS;
-    private static final String RECENTS_USE_GRID =
-            "system:" + Settings.System.RECENTS_USE_GRID;
 
-    private static boolean mShowLockIcon, mShowDismissIcon, mUseOmniSwitch,
-            mUseSlimRecents, mUseGrid;
+    private static boolean mShowLockIcon, mShowDismissIcon;
 
     public TaskViewHeader(Context context) {
         this(context, null);
@@ -277,10 +270,7 @@ public class TaskViewHeader extends FrameLayout
     protected void onAttachedToWindow() {
         TunerService.get(mContext).addTunable(this,
                 RECENTS_LOCK_ICON,
-                RECENTS_DISMISS_ICON,
-                RECENTS_USE_OMNISWITCH,
-                USE_SLIM_RECENTS,
-                RECENTS_USE_GRID);
+                RECENTS_DISMISS_ICON);
         super.onAttachedToWindow();
     }
 
@@ -301,23 +291,10 @@ public class TaskViewHeader extends FrameLayout
                 mShowDismissIcon =
                     newValue == null || Integer.parseInt(newValue) != 0;
                 break;
-            case RECENTS_USE_OMNISWITCH:
-                mUseOmniSwitch =
-                    newValue != null && Integer.parseInt(newValue) == 1;
-                break;
-            case USE_SLIM_RECENTS:
-                mUseSlimRecents =
-                    newValue != null && Integer.parseInt(newValue) == 1;
-                break;
-            case RECENTS_USE_GRID:
-                mUseGrid =
-                    newValue != null && Integer.parseInt(newValue) == 1;
-                break;
             default:
                 break;
         }
-        Recents.mAllowLockTask = mShowLockIcon && !mUseOmniSwitch &&
-                !mUseSlimRecents && !mUseGrid;
+        Recents.mAllowLockTask = mShowLockIcon;
         if (!Recents.mAllowLockTask)
             TaskStackView.mStack.removeAllLockedTasks();
     }
