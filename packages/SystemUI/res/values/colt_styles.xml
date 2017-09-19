@@ -73,5 +73,10 @@
         <item name="android:colorSecondary">@color/pixel_primary_color</item>
     </style>
 
+    <style name="TextAppearance.StatusBar.PhoneTicker"
+        parent="@*android:style/TextAppearance.StatusBar.Ticker">
+        <!-- Note: must be dp to fit in status bar -->
+        <item name="android:textSize">14dp</item>
+    </style>
 
 </resources>
