@@ -3001,7 +3001,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         lp.setTitle("GestureAnywhereView");
 
         return lp;
-
+}
     public boolean isCameraAllowedByAdmin() {
        if (mDevicePolicyManager.getCameraDisabled(null, mCurrentUserId)) {
            return false;
