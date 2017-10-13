@@ -2131,17 +2131,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         });
 
-        // Initialise Keypress Boost
-        mBoostParamValWeak = context.getResources().getIntArray(
-                com.android.internal.R.array.qboost_weak_param_value);
-        mBoostParamValStrong = context.getResources().getIntArray(
-                com.android.internal.R.array.qboost_strong_param_value);
-        lIsPerfBoostEnabled = mBoostParamValWeak.length != 0
-                && mBoostParamValStrong.length != 0;
-        if (lIsPerfBoostEnabled) {
-            mPerf = new BoostFramework();
-        }
-
         // Init display burn-in protection
         boolean burnInProtectionEnabled = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_enableBurnInProtection);
