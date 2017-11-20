@@ -61,7 +61,7 @@ please see themes_device_defaults.xml.
          window decorations, so you basically have an empty rectangle in which
          to place your content. It makes the window floating, with a transparent
          background, and turns off dimming behind the window. -->
-    <style name="Theme.Material.DayNight.Panel" parent="Theme.Material.Panel" />
+    <!--<style name="Theme.Material.DayNight.Panel" parent="Theme.Material.Panel" /> -->
 
     <!-- Material theme (day/night version) for dialog windows and activities,
          which is used by the {@link android.app.Dialog} class. This changes
